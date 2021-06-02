@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+	{% load static %}
+  <title>Ipod Pro</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'myapp/assets/img/favicon.png' %}" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'myapp/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'myapp/assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'myapp/assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'myapp/assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'myapp/assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'myapp/assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'myapp/assets/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" >
+  <link href="{% static 'myapp/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="{% static 'myapp/assets/css/style.css' %}" rel="stylesheet">
+
+<style>
+
+html {
+  height: 100vh;
+}
+
+body {
+  height: 500vh;
+  background: #000;
+}
+
+canvas {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+ <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <!-- <h1 class="logo"><a href="index.html">Gp<span>.</span></a></h1> -->
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="index.html" class="logo"><img src="{% static 'myapp/assets/img/ai_logo.png' %}" alt="" class="img-fluid"></a>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#services">Services</a></li>
+          <!-- <li><a href="#technology">Technology</a></li> -->
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+      <a href="https://upheaval.tech/" class="get-started-btn scrollto" target="_blank">Get Started</a>
+
+    </div>
+  </header><!-- End Header -->
+  
+<canvas id="hero-lightpass" />
+<script>
+const html = document.documentElement;
+const canvas = document.getElementById("hero-lightpass");
+const context = canvas.getContext("2d");
+
+const frameCount = 148;
+const currentFrame = index => (
+  `https://sfo3.digitaloceanspaces.com/upheaval/${index.toString()}.png`
+)
+
+const preloadImages = () => {
+  for (let i = 1; i < frameCount; i++) {
+    const img = new Image();
+    img.src = currentFrame(i);
+  }
+};
+
+const img = new Image()
+img.src = currentFrame(1);
+canvas.width=1920
+canvas.height=960;
+img.onload=function(){
+  context.drawImage(img, 0, 0);
+}
+
+const updateImage = index => {
+  img.src = currentFrame(index);
+  context.drawImage(img, 0, 0);
+}
+
+window.addEventListener('scroll', () => {  
+  const scrollTop = html.scrollTop;
+  const maxScrollTop = html.scrollHeight - window.innerHeight;
+  const scrollFraction = scrollTop / maxScrollTop;
+  const frameIndex = Math.min(
+    frameCount - 1,
+    Math.ceil(scrollFraction * frameCount)
+  );
+  
+  requestAnimationFrame(() => updateImage(frameIndex + 1))
+});
+
+preloadImages()
+</script>
+</body>
