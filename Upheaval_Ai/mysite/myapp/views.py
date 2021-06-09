@@ -10,3 +10,6 @@ def index(request):
 def image(request):
     return render(request=request, 
                   template_name="myapp/new.html",)
+def retailindustry(request):
+    return render(request=request, 
+                  template_name="myapp/inner-page.html",)
