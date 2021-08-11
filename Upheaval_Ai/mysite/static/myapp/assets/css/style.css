@@ -149,14 +149,13 @@ h1, h2, h3, h4, h5, h6 {
 #inner {
   width: 100%;
   height: 100vh;
-  background: url("../img/0013.png") top center;
+  background: url("../img/bck.png") top center;
   background-size: cover;
   position: relative;
 }
 
 #inner:before {
   content: "";
-  background: rgba(0, 0, 0, 0.6);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -167,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
 #inner .container {
   position: relative;
   padding-top: 74px;
-  text-align: center;
+  text-align: right;
 }
 
 #inner h1 {
@@ -175,7 +174,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 56px;
   font-weight: 700;
   line-height: 64px;
-  color: #fff;
+  color: #BE1414;
   font-family: "Poppins", sans-serif;
 }
 
@@ -635,11 +634,10 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
 }
 
 .partners .owl-item img {
-  width: 70%;
+  width: 30%;
   opacity: 0.5;
   transition: 0.3s;
   filter: grayscale(100);
